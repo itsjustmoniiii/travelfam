@@ -8,7 +8,7 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({ children }) => {
   return (
     <>
       <div className={`flex h-screen ${styles.bgStyle}`}>
-        <div className="m-auto bg-slate-50  rounded-md grid lg:grid-cols-2 w-5/6 md:w-4/6 h-4/5 overflow-hidden">
+        <div className="m-auto bg-slate-50  rounded-md grid lg:grid-cols-2 w-11/12 md:w-5/6 h-4/5 overflow-hidden">
           <div className={`${styles.bgStyle}`}>
             <div className={styles.backgroundImg}></div>
           </div>
