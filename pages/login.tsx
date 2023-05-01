@@ -59,7 +59,7 @@ const Login = () => {
         <Head>
           <title>Login</title>
         </Head>
-        <section className="w-3/4 mx-auto space-y-2">
+        <section className="w-10/12 md:w-3/4 mx-auto space-y-2">
           <div className="title mb-10">
             <h1 className="text-gray-800 text-4xl font-bold py-4">Login</h1>
           </div>
