@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  @apply h-full bg-neutral-950;
+}
+
+body {
+  @apply h-full bg-neutral-950;
+}

@@ -1,0 +1,15 @@
+.backgroundImg {
+  background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.8) 100%
+    ),
+    url("/assets/background2.jpg") no-repeat;
+  height: 15rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position-x: 55%;
+  background-position-y: 55%;
+}

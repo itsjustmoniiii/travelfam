@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                 String         @id @default(auto()) @map("_id") @db.ObjectId
+  username           String         @unique
+  bio                String?
+  email              String         @unique
+  hashedPassword     String
+  profileImage       String?
+  countFollowers     Int            @default(0)
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+  followingIds       String[]       @db.ObjectId
+  hasNotification    Boolean?
+  isPrivate          Boolean        @default(false)
+  posts              Post[]
+  comments           Comment[]
+  notifications      Notification[] @relation("notification")
+  actorNotifications Notification[] @relation("actor")
+}
+
+model Post {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  text       String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  userId     String   @db.ObjectId
+  image      String?
+  likedIds   String[] @db.ObjectId
+  savedIds   String[] @db.ObjectId
+  countLikes Int      @default(0)
+
+  user             User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comments         Comment[]
+  notificationPost Notification[]
+}
+
+model Comment {
+  id                   String         @id @default(auto()) @map("_id") @db.ObjectId
+  text                 String
+  createdAt            DateTime       @default(now())
+  updatedAt            DateTime       @updatedAt
+  userId               String         @db.ObjectId
+  postId               String         @db.ObjectId
+  notificationCommment Notification[]
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+}
+
+model NotificationCategory {
+  id                     String         @id @default(auto()) @map("_id") @db.ObjectId
+  name                   String
+  notificationsCategorys Notification[]
+}
+
+model Notification {
+  id         String               @id @default(auto()) @map("_id") @db.ObjectId
+  userId     String               @db.ObjectId
+  categoryId String               @db.ObjectId
+  createdAt  DateTime             @default(now())
+  actorId    String?              @db.ObjectId
+  postId     String?              @db.ObjectId
+  commentId  String?              @db.ObjectId
+  actor      User?                @relation("actor", fields: [actorId], references: [id])
+  user       User                 @relation("notification", fields: [userId], references: [id], onDelete: Cascade)
+  category   NotificationCategory @relation(fields: [categoryId], references: [id])
+  post       Post?                @relation(fields: [postId], references: [id], onDelete: Cascade)
+  comment    Comment?             @relation(fields: [commentId], references: [id], onDelete: Cascade)
+}
