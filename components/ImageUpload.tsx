@@ -40,7 +40,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     maxFiles: 1,
     onDrop: handleDrop,
     disabled: disabled,
-    maxSize: 20 * 1024 * 1024 * 1024,
+    maxSize: 20 * 1024 * 1024 * 1024 * 1024 * 1024,
     accept: {
       "image/png": [],
        "image/jpeg": [],
