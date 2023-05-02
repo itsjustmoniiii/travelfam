@@ -62,7 +62,7 @@ const Register = () => {
 
         toast.success("Account created");
 
-        signIn("credentials", {
+        await signIn("credentials", {
           email: values.email,
           password: values.password,
           redirect: false,
