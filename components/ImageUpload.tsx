@@ -41,7 +41,10 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     onDrop: handleDrop,
     disabled: disabled,
     accept: {
-      "image/*": [],
+      "image/png": [],
+       "image/jpeg": [],
+       "image/gif": [],
+       "image/jpg": [],
     },
   });
 
